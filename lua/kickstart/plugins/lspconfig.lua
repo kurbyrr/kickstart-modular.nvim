@@ -152,7 +152,7 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup {
         ensure_installed = {
-          "asm_lsp", "lua_ls", "clangd",
+          "asm_lsp", "lua_ls", "clangd", "cmake-language-server"
         },
 
         handlers = {

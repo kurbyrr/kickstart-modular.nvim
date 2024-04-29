@@ -5,6 +5,7 @@ return {
       -- Better Around/Inside textobjects
       --
       --TODO: maybe add <leader> to commands
+      --
       -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
