@@ -133,5 +133,6 @@ return {
         vim.keymap.set("n", "<leader>cb", vim.cmd.CMakeBuild);
         vim.keymap.set("n", "<leader>cg", vim.cmd.CMakeGenerate);
         vim.keymap.set("n", "<leader>cr", vim.cmd.CMakeRun);
+        vim.keymap.set("n", "<leader>cd", vim.cmd.CMakeDebug);
     end
 }
