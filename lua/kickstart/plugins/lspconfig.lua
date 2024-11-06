@@ -124,6 +124,9 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        --
+
+        jedi_language_server = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -139,8 +142,6 @@ return {
             },
           },
         },
-
-        jq = {},
       }
 
       local manual_servers = {
