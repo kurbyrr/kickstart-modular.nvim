@@ -108,7 +108,7 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
+      local mason_servers = {
         clangd = {
           cmd = {
             "clangd",
@@ -118,8 +118,6 @@ return {
             "--pch-storage=memory"
           }
         },
-        rust_analyzer = {},
-        pyright = {},
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
@@ -145,6 +143,15 @@ return {
         jq = {},
       }
 
+      local manual_servers = {
+        rust_analyzer = {}
+      }
+
+      for server_name, server_settings in pairs(manual_servers) do
+        server_settings.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_settings.capabilities or {})
+        require("lspconfig")[server_name].setup(server_settings)
+      end
+
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -159,7 +166,7 @@ return {
 
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
+            local server = mason_servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
