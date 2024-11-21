@@ -112,7 +112,7 @@ return {
         clangd = {
           cmd = {
             "clangd",
-            "--fallback-style=Microsoft",
+            "--fallback-style=Google",
             "--header-insertion=never",
             "-j=8",
             "--pch-storage=memory"
@@ -142,6 +142,8 @@ return {
             },
           },
         },
+
+        texlab = {},
       }
 
       local manual_servers = {
