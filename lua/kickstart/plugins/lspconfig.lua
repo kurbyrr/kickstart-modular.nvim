@@ -163,9 +163,7 @@ return {
       --  You can press `g?` for help in this menu.
       require('mason').setup()
       require('mason-lspconfig').setup {
-        ensure_installed = {
-          "asm_lsp", "lua_ls", "clangd", "cmake"
-        },
+        ensure_installed = vim.tbl_keys(mason_servers or {}),
 
         handlers = {
           function(server_name)
