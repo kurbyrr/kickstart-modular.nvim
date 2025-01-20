@@ -88,7 +88,6 @@ return {
         group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
         callback = function(event)
           vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event.buf }
         end,
       })
 
@@ -164,7 +163,7 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup {
         ensure_installed = {
-          "asm_lsp", "lua_ls", "clangd", "cmake"
+          "asm_lsp", "lua_ls", "clangd",
         },
 
         handlers = {
