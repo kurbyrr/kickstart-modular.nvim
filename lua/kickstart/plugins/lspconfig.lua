@@ -146,7 +146,8 @@ return {
       }
 
       local manual_servers = {
-        rust_analyzer = {}
+        rust_analyzer = {},
+        asm_lsp = {},
       }
 
       for server_name, server_settings in pairs(manual_servers) do
@@ -163,7 +164,7 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup {
         ensure_installed = {
-          "asm_lsp", "lua_ls", "clangd",
+          "lua_ls", "clangd",
         },
 
         handlers = {
