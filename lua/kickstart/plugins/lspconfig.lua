@@ -125,7 +125,7 @@ return {
         --
         --
 
-        jedi_language_server = {},
+        pylsp = {},
 
         lua_ls = {
           -- cmd = {...},
