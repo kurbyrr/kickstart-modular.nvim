@@ -4,8 +4,16 @@ return {
     build = ':TSUpdate',
     opts = {
       ensure_installed = {
-        "vimdoc", "javascript", "typescript", "c", "lua", "rust",
-        "bash", "cpp", "python", "json",
+        'vimdoc',
+        'javascript',
+        'typescript',
+        'c',
+        'lua',
+        'rust',
+        'bash',
+        'cpp',
+        'python',
+        'json',
       },
       sync_install = false,
       -- Autoinstall languages that are not installed
