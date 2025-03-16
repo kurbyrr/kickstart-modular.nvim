@@ -209,30 +209,8 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
-        clangd = {
-          cmd = {
-            'clangd',
-            '--fallback-style=Google',
-            '--header-insertion=never',
-            '-j=8',
-            '--pch-storage=memory',
-          },
-        },
-
+      local manual_servers = {
         rust_analyzer = {},
-
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-            },
-          },
-        },
-        pylsp = {},
-        texlab = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -248,15 +226,36 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = { 'stylua', 'pylsp', 'clangd', 'texlab' }
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      local ensure_installed = {
+        clangd = {
+          cmd = {
+            'clangd',
+            '--fallback-style=Google',
+            '--header-insertion=never',
+            '-j=8',
+            '--pch-storage=memory',
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+        },
+        pylsp = {},
+        texlab = {},
+      }
+      require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(ensure_installed) }
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
+            local server = ensure_installed[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
@@ -265,6 +264,15 @@ return {
           end,
         },
       }
+
+      for k, v in pairs(manual_servers) do
+        local server = v
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        require('lspconfig')[k].setup(server)
+      end
     end,
   },
 }
