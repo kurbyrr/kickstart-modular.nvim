@@ -234,6 +234,7 @@ return {
             '--header-insertion=never',
             '-j=8',
             '--pch-storage=memory',
+            '--query-driver=/home/ralphgeha/.platformio/packages/**',
           },
         },
         lua_ls = {
