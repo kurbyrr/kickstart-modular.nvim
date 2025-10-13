@@ -219,6 +219,7 @@ return {
         },
         pylsp = {},
         texlab = {},
+        slang = {},
       }
       require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(ensure_installed) }
 
