@@ -182,6 +182,7 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local manual_servers = {
         rust_analyzer = {},
+        slangd = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -219,7 +220,6 @@ return {
         },
         pylsp = {},
         texlab = {},
-        slang = {},
       }
       require('mason-tool-installer').setup { ensure_installed = vim.tbl_keys(ensure_installed) }
 
