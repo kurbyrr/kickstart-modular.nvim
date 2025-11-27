@@ -1,18 +1,9 @@
--- NOTE: Plugins can specify dependencies.
---
--- The dependencies are proper plugin specifications as well - anything
--- you do for a plugin at the top level, you can do for a dependency.
---
--- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
+    tag = 'v0.1.9',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('telescope').setup {}
 
