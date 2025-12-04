@@ -19,7 +19,17 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      require('mini.pairs').setup()
+      local grp = vim.api.nvim_create_augroup('kickstart-autopairs', { clear = true })
+      local map_tex = function()
+        MiniPairs.map_buf(0, 'i', '$', { action = 'closeopen', pair = '$$' })
+      end
+      vim.api.nvim_create_autocmd('BufEnter', { group = grp, pattern = '*.tex', callback = map_tex })
+
+      require('mini.pairs').setup {
+        mappings = {
+          ["'"] = false,
+        },
+      }
     end,
   },
 }
