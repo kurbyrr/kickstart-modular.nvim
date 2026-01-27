@@ -30,7 +30,7 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.smartindent = true
+vim.opt.smartindent = false
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
