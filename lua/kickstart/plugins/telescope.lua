@@ -11,6 +11,7 @@ return {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[P]roject [F]ind' })
       vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = '[V]im [H]elp' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>pws', function()
         local word = vim.fn.expand '<cword>'
         builtin.grep_string { search = word }
