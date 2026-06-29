@@ -101,7 +101,7 @@ local manual_servers = {
       '--pch-storage=memory',
       '-j=8',
       '--header-insertion=never',
-      '--fallback-style=llvm',
+      '--fallback-style=LLVM',
     },
   },
   slangd = {},
