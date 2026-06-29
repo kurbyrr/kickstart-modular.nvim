@@ -1,6 +1,6 @@
 -- Load plugin modules in order.
 
-require 'kickstart.plugins.gitsigns'
+require 'kickstart.plugins.neogit'
 require 'kickstart.plugins.which-key'
 require 'kickstart.plugins.tokyonight'
 require 'kickstart.plugins.todo-comments'
