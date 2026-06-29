@@ -54,8 +54,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- or a suggestion from your LSP for this to activate.
     map('<leader>vca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
-    map('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
     --    See `:help CursorHold` for information about when this is executed
@@ -95,12 +93,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+---@type table<string, vim.lsp.Config>
+local manual_servers = {
+  clangd = {
+    cmd = {
+      'clangd',
+      '--pch-storage=memory',
+      '-j=8',
+      '--header-insertion=never',
+      '--fallback-style=llvm',
+    },
+  },
+  slangd = {},
+  rust_analyzer = {},
+}
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --  See `:help lsp-config` for information about keys and how to configure
 ---@type table<string, vim.lsp.Config>
 local servers = {
-  -- clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
@@ -173,6 +185,11 @@ vim.list_extend(ensure_installed, {
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 for name, server in pairs(servers) do
+  vim.lsp.config(name, server)
+  vim.lsp.enable(name)
+end
+
+for name, server in pairs(manual_servers) do
   vim.lsp.config(name, server)
   vim.lsp.enable(name)
 end
