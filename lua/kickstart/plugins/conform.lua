@@ -10,6 +10,7 @@ require('conform').setup {
   -- You can also specify external formatters in here.
   formatters_by_ft = {
     python = { 'ruff', 'black', stop_after_first = true },
+    cpp = { 'clang-format' },
     --
     -- You can use 'stop_after_first' to run the first available formatter from the list
     -- javascript = { "prettierd", "prettier", stop_after_first = true },
