@@ -124,6 +124,7 @@ local servers = {
   -- ts_ls = {},
 
   ols = {},
+  zls = {},
   vhdl_ls = {},
   stylua = {}, -- Used to format Lua code
 
