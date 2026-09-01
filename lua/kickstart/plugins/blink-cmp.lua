@@ -4,7 +4,7 @@ local function gh(repo) return 'https://github.com/' .. repo end
 
 -- NOTE: You can also specify plugin using a version range for its git tag.
 --  See `:help vim.version.range()` for more info
-vim.pack.add { { src = gh 'L3MON4D3/LuaSnip', version = vim.version.range '2.*' } }
+vim.pack.add { { src = gh 'L3MON4D3/LuaSnip' } }
 require('luasnip').setup {}
 
 -- `friendly-snippets` contains a variety of premade snippets.
@@ -15,7 +15,7 @@ require('luasnip').setup {}
 -- require('luasnip.loaders.from_vscode').lazy_load()
 
 -- [[ Autocomplete Engine ]]
-vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
+vim.pack.add { { src = gh 'saghen/blink.cmp' } }
 require('blink.cmp').setup {
   keymap = {
     -- 'default' (recommended) for mappings similar to built-in completions
